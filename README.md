@@ -1,7 +1,7 @@
 WHO:
 	Dakota Clark <dclark@team-sos.com>
 WHAT:
-	To connect to a Office 365 environment in a one liner.
+	Single command to connect to Office 365 via PowerShell.
 HOW:
 	Using the Enter-PSSession and tip from the Oulook.com
 	website from PS session management.
