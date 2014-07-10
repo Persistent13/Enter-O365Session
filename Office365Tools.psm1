@@ -1,4 +1,46 @@
-﻿function Enter-O365Session{
+﻿function Enter-Office365Session{
+    <#
+    .SYNOPSIS
+    Connects you to the Office 365 cloud.
+    .DESCRIPTION
+    Connects you to the Office 365 cloud via a PSSession for
+    indepth hosted Exchange administration. Can accept credentials
+    via parameters but this is not recommened.
+    .EXAMPLE
+    Enter the command with out parameters and you'll be prompted
+    for credentials in a secure manner.
+
+    PS C:\>Enter-Office365Session
+    Please enter the username. "foo@example.com": jsmith@contoso.net
+    Please enter the password: *******
+    .EXAMPLE
+    !WARNING! This method is not secure and has only been
+    introduced for the use of a script that needs an automted 
+    connection to the Office 365 cloud. Use only if you undestand
+    the impact of this method!
+
+    Enter the command with either the User and Password parameters
+    or enter a single parammeter to pass all or a portion of your
+    credentials. The script will prompt as normal for any missing
+    information.
+
+    PS C:\>Enter-Office365Session -User jsmith@contoso.net -Passowrd thebest
+
+    PS C:\>Enter-Office365Session -User jsmith@contoso.net
+    Please enter the password: *******
+
+    PS C:\>Enter-Office365Session -Passowrd thebest
+    Please enter the username. "foo@example.com": jsmith@contoso.net
+    .PARAMETER User
+    The username to use when connecting to the cloud.
+    .PARAMETER Password
+    !WARNING! This parameter is not secure and when passed your
+    password will be held in plain text for a duration in memory.
+    It is recommened to not use this parameter unless the impact
+    id this method is fully understude.
+
+    The password to use when connecting to the cloud.
+    #>
     param(
         [Parameter(Mandatory=$false)]
         [ValidatePattern("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b")]
