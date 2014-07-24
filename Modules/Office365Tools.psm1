@@ -79,7 +79,8 @@
     }
     $liveCredential = New-Object -Typename System.Management.Automation.PSCredential -ArgumentList $User,$Password
     try{
-        $liveSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell/ -Credential $liveCredential -Authentication Basic -AllowRedirection
+        $liveSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell/ `
+            -Credential $liveCredential -Authentication Basic -AllowRedirection
         Import-PSSession -AllowClobber $liveSession
         Write-Host "
         "
