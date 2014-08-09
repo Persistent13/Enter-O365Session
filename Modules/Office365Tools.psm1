@@ -6,6 +6,11 @@
     Connects you to the Office 365 cloud via a PSSession for
     indepth hosted Exchange administration. Can accept credentials
     via parameters but this is not recommened.
+    .LINK
+    New-PSSession
+    Import-PSSession
+    Enter-PSSession
+    Remove-PSSession
     .EXAMPLE
     Enter-Office365Session
 
