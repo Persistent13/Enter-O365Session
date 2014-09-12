@@ -1,4 +1,5 @@
-﻿function Enter-Office365Session{
+﻿function Enter-Office365Session
+{
 <#
     .SYNOPSIS
     Connects you to the Office 365 cloud.
@@ -51,7 +52,8 @@
 
     The password to use when connecting to the cloud.
 #>
-    param(
+    param
+    (
         [Parameter(Mandatory=$false)]
         [ValidatePattern("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b")]
         $User,
@@ -59,26 +61,33 @@
         $Password
     )
     $ErrorActionPreference = "Stop"
-    if(!$User){
-        do{
-            try{
+    if(!$User)
+    {
+        do
+        {
+            try
+            {
                 $secureStringOk = $true
                 $User = Read-Host 'Please enter the username. "foo@example.com"'
             }
-            catch{
+            catch
+            {
                 $secureStringOk = $false
             }
         }
         until(($User -match "\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b") -and $secureStringOk)
     }
-    if($Password.Length -gt 0){
+    if($Password.Length -gt 0)
+    {
         $Password = $Password | ConvertTo-SecureString -AsPlainText -Force
     }
-    if(!$Password){
+    if(!$Password)
+    {
         $Password = Read-Host -AsSecureString "Please enter the password"
     }
     $liveCredential = New-Object -Typename System.Management.Automation.PSCredential -ArgumentList $User,$Password
-    try{
+    try
+    {
         $liveSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell/ `
             -Credential $liveCredential -Authentication Basic -AllowRedirection
         Import-PSSession -AllowClobber $liveSession
@@ -87,7 +96,8 @@
         Write-Output "Exit with command Remove-PSSession $((Get-PSSession).Id)"
 
     }
-    catch [Exception]{
+    catch [Exception]
+    {
         Write-Output "$($_.Exception.Message)"
     }
 }
