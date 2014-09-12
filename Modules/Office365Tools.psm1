@@ -50,7 +50,7 @@
     It is recommened to not use this parameter unless the impact
     id this method is fully understude.
 
-    The password to use when connecting to the cloud.
+    The password to use when connecting to Office 365.
 #>
     param
     (
